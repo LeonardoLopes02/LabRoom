@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataformas do Metaverso | LabRoom</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos específicos para esta página */
+        .platform-hero {
+            background: linear-gradient(135deg, var(--primary-dark), #5A1E8C);
+        }
+        
+        .platform-card {
+            background: rgba(26, 0, 51, 0.7);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+            border: 1px solid rgba(138, 43, 226, 0.5);
+        }
+        
+        .platform-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(138, 43, 226, 0.4);
+        }
+        
+        .platform-header {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: rgba(74, 0, 130, 0.3);
+            border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+        }
+        
+        .platform-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 15px;
+            margin-right: 20px;
+            object-fit: contain;
+            padding: 5px;
+        }
+        
+        .platform-content {
+            padding: 25px;
+        }
+        
+        .platform-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 15px;
+            background: rgba(138, 43, 226, 0.2);
+            border-radius: 10px;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .platform-features {
+            margin-top: 30px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+        
+        .feature-icon {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            margin-right: 15px;
+            margin-top: 3px;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 40px 0;
+            background: rgba(26, 0, 51, 0.5);
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+        }
+        
+        .comparison-table th {
+            background: rgba(74, 0, 130, 0.3);
+            color: var(--accent);
+            font-family: 'Orbitron', sans-serif;
+        }
+        
+        .comparison-table tr:hover {
+            background: rgba(138, 43, 226, 0.1);
+        }
+        
+        .platform-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-right: 5px;
+        }
+        
+        .badge-primary {
+            background: var(--primary-light);
+            color: white;
+        }
+        
+        .badge-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .platform-img {
+            width: 100%;
+            border-radius: 10px;
+            margin: 20px 0;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* MELHORAR A EXPERIÊNCIA DO SCROLL NO MOBILE */
+.table-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.table-container::-webkit-scrollbar-track {
+    background: rgba(138, 43, 226, 0.1);
+    border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb {
+    background: var(--primary-light);
+    border-radius: 4px;
+}
+
+.table-container::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary);
+}
+
+/* INDICADOR VISUAL DE SCROLL */
+.table-container {
+    position: relative;
+}
+
+.table-container::after {
+    content: '↔ Arraste para ver mais';
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    opacity: 0.7;
+    animation: pulse 2s infinite;
+}
+
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="logo">
+        <span class="logo-text">LabRoom</span>
+    </div>
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="#Roblox" class="nav-link">Roblox</a></li>
+            <li><a href="#OutrasPlataformas" class="nav-link">Outras Plataformas</a></li>
+            <li><a href="#OFuturo" class="nav-link">O Futuro</a></li>
+        </ul>
+    </nav>
+
+    <!-- Botão de Acessibilidade -->
+    <div class="accessibility-tools">
+        <button id="screen-reader-toggle" class="accessibility-btn" aria-label="Ativar leitor de tela">
+            <i class="fas fa-assistive-listening-systems"></i>
+            <span class="tooltip">Leitor de Tela</span>
+        </button>
+        
+        <button id="font-decrease" class="accessibility-btn" aria-label="Diminuir tamanho da fonte">
+            <i class="fas fa-text-height"></i>
+            <span class="tooltip">A-</span>
+        </button>
+
+        <button id="font-increase" class="accessibility-btn" aria-label="Aumentar tamanho da fonte">
+            <i class="fas fa-text-height"></i>
+            <span class="tooltip">A+</span>
+        </button>
+        
+        <button id="high-contrast" class="accessibility-btn" aria-label="Alto contraste">
+            <i class="fas fa-adjust"></i>
+            <span class="tooltip">Contraste</span>
+        </button>
+    </div>
+    
+    <!-- ÚNICO menu toggle NO LUGAR CORRETO -->
+    <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </div>
+</header>
+
+    <!-- Hero Section Plataformas -->
+    <section class="hero platform-hero"> <!-- ou economy-hero, social-hero -->
+    <div class="hero-container">
+        <div class="hero-content">
+            <h1 class="hero-title">Plataformas do <span>Metaverso</span></h1>
+            <p class="hero-subtitle">Explore os principais mundos virtuais que estão moldando o futuro digital</p>
+        </div>
+        
+        <div class="hero-image">
+            <div class="vr-headset">
+                <img src="Imagens/plataforma.png" alt="Óculos VR" class="headset-img">
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Seção Roblox -->
+    <section id="Roblox" class="section">
+        <div class="section-header">
+            <h2>Roblox</h2>
+            <p>A plataforma que democratizou a criação de mundos virtuais</p>
+        </div>
+        
+        <div class="platform-card">
+            <div class="platform-header">
+                <img src="Imagens/robloxlogo.png" alt="Roblox Logo" class="platform-logo">
+                <div>
+                    <h3>Roblox Corporation</h3>
+                    <p>Lançado em 2006 | 214 milhões de usuários ativos mensais</p>
+                </div>
+            </div>
+            
+            <div class="platform-content">
+                <img src="Imagens/robloxgameplay.png" alt="Gameplay Roblox" class="platform-img">
+                
+                <p>O Roblox não é apenas um jogo, mas uma plataforma completa que permite aos usuários criar e compartilhar suas próprias experiências 3D. Com uma economia robusta e uma comunidade vibrante, o Roblox se tornou um dos principais espaços do metaverso, especialmente entre o público mais jovem.</p>
+                
+                <div class="platform-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">214M</div>
+                        <div class="stat-label">Usuários Mensais</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">R$ 9,2Bi</div>
+                        <div class="stat-label">Receita Anual</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">40M</div>
+                        <div class="stat-label">Experiências</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">11.5B</div>
+                        <div class="stat-label">Horas Engajadas</div>
+                    </div>
+                </div>
+                
+                <h4>Por que o Roblox é importante para o Metaverso?</h4>
+                <p>O Roblox apresenta várias características que o tornam um precursor importante do metaverso:</p>
+                
+                <div class="platform-features">
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-code"></i></div>
+                        <div>
+                            <h5>Ferramentas de Criação Acessíveis</h5>
+                            <p>Roblox Studio permite que qualquer pessoa crie seus próprios mundos e jogos sem necessidade de conhecimento avançado de programação.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-money-bill-wave"></i></div>
+                        <div>
+                            <h5>Economia Virtual Robustaz</h5>
+                            <p>Com a moeda virtual Robux, os criadores podem monetizar suas experiências e itens virtuais, com alguns desenvolvedores ganhando mais de R$1 milhão por ano.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-users"></i></div>
+                        <div>
+                            <h5>Socialização Avançada</h5>
+                            <p>Chat de voz, grupos e sistemas de amigos criam uma experiência social rica, com eventos ao vivo que atraem milhões de participantes.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-item">
+                        <div class="feature-icon"><i class="fas fa-vr-cardboard"></i></div>
+                        <div>
+                            <h5>Suporte a VR</h5>
+                            <p>Muitas experiências no Roblox são compatíveis com headsets de realidade virtual como Meta Quest e Valve Index.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h4>Como começar no Roblox?</h4>
+                <p>Para entrar no Roblox Metaverso:</p>
+                <ol>
+                    <li>Baixe o aplicativo Roblox no seu dispositivo (PC, mobile ou console)</li>
+                    <li>Crie uma conta gratuita</li>
+                    <li>Explore os jogos mais populares na seção "Descobrir"</li>
+                    <li>Para criar seus próprios mundos, baixe o Roblox Studio</li>
+                </ol>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Outras Plataformas - ATUALIZADA -->
+<section id="OutrasPlataformas" class="section">
+    <div class="section-header">
+        <h2>Outras Plataformas Importantes</h2>
+        <p>Conheça outros mundos virtuais que compõem o ecossistema do metaverso</p>
+    </div>
+        
+         <!-- DIV CONTAINER PARA SCROLL HORIZONTAL -->
+    <div class="table-container">
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Plataforma</th>
+                    <th>Foco Principal</th>
+                    <th>Usuários Ativos</th>
+                    <th>Blockchain</th>
+                    <th>VR</th>
+                    <th>Economia</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <strong>Decentraland</strong>
+                        <div>
+                            <span class="platform-badge badge-primary">Open World</span>
+                            <span class="platform-badge badge-secondary">NFTs</span>
+                        </div>
+                    </td>
+                    <td>Mundo virtual descentralizado baseado em Ethereum</td>
+                    <td>500K+</td>
+                    <td><i class="fas fa-check" style="color: var(--secondary);"></i></td>
+                    <td><i class="fas fa-check" style="color: var(--secondary);"></i></td>
+                    <td>MANA (criptomoeda)</td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Horizon Worlds</strong>
+                        <div>
+                            <span class="platform-badge badge-primary">Social</span>
+                        </div>
+                    </td>
+                    <td>Plataforma social da Meta (Facebook)</td>
+                    <td>300K+</td>
+                    <td><i class="fas fa-times" style="color: #ff4d4d;"></i></td>
+                    <td><i class="fas fa-check" style="color: var(--secondary);"></i></td>
+                    <td>Em desenvolvimento</td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>VRChat</strong>
+                        <div>
+                            <span class="platform-badge badge-primary">Social</span>
+                            <span class="platform-badge badge-secondary">Avatares</span>
+                        </div>
+                    </td>
+                    <td>Plataforma social focada em avatares personalizados</td>
+                    <td>4M+</td>
+                    <td><i class="fas fa-times" style="color: #ff4d4d;"></i></td>
+                    <td><i class="fas fa-check" style="color: var(--secondary);"></i></td>
+                    <td>Itens virtuais</td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>The Sandbox</strong>
+                        <div>
+                            <span class="platform-badge badge-primary">Games</span>
+                            <span class="platform-badge badge-secondary">NFTs</span>
+                        </div>
+                    </td>
+                    <td>Mundo virtual focado em jogos e NFTs</td>
+                    <td>2M+</td>
+                    <td><i class="fas fa-check" style="color: var(--secondary);"></i></td>
+                    <td><i class="fas fa-check" style="color: var(--secondary);"></i></td>
+                    <td>SAND (criptomoeda)</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="metaverso-grid" style="margin-top: 50px;">
+            <div class="metaverso-card">
+                <div class="card-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <h3>Para Jogadores</h3>
+                <p>Roblox e The Sandbox oferecem milhares de jogos e experiências interativas com gráficos variados.</p>
+                <p><strong>Dica:</strong> No Roblox, experimente "Adopt Me!" e "Brookhaven RP". No Sandbox, explore os jogos com NFTs.</p>
+            </div>
+            <div class="metaverso-card">
+                <div class="card-icon">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <h3>Para Criadores</h3>
+                <p>Decentraland e Roblox oferecem ferramentas para criação de conteúdo, com diferentes curvas de aprendizado.</p>
+                <p><strong>Dica:</strong> Roblox Studio é mais acessível para iniciantes, enquanto Decentraland requer conhecimento de blockchain.</p>
+            </div>
+            <div class="metaverso-card">
+                <div class="card-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3>Para Investidores</h3>
+                <p>Plataformas baseadas em blockchain permitem investimento em terrenos virtuais e itens digitais.</p>
+                <p><strong>Dica:</strong> Pesquise bem antes de investir e comece com valores pequenos para entender o mercado.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Futuro -->
+    <section id="OFuturo" class="section" style="background: linear-gradient(135deg, var(--primary), var(--primary-dark));">
+        <div class="section-header">
+            <h2>O Futuro das Plataformas</h2>
+            <p>Para onde as plataformas de metaverso estão evoluindo?</p>
+        </div>
+        
+        <div class="platform-card">
+            <div class="platform-content">
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-link"></i></div>
+                    <div>
+                        <h4>Interoperabilidade</h4>
+                        <p>As plataformas estão trabalhando para permitir que avatares e itens possam ser usados em diferentes mundos virtuais.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <div>
+                        <h4>Acesso Mobile</h4>
+                        <p>Melhorias gráficas e de performance para tornar a experiência em smartphones mais imersiva.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-vr-cardboard"></i></div>
+                    <div>
+                        <h4>Realidade Mista</h4>
+                        <p>Integração mais profunda entre mundos virtuais e o espaço físico através de AR e VR.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-graduation-cap"></i></div>
+                    <div>
+                        <h4>Educação e Trabalho</h4>
+                        <p>Expansão para além do entretenimento, com salas de aula e escritórios virtuais.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <span class="logo-text">LabRoom</span>
+                <p>Explorando o futuro das experiências digitais</p>
+            </div>
+            <div class="footer-links">
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="#Roblox" class="nav-link">Roblox</a></li>
+                    <li><a href="#OutrasPlataformas" class="nav-link">Outras Plataformas</a></li>
+                    <li><a href="#OFuturo" class="nav-link">O Futuro</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contato</h4>
+                <p>+55 11 960330033 - João Vitor A</p>
+                <p>+55 11 980181426 - Leonardo Dalessandro</p>
+                <p>+55 11 992043056 - Leonardo Gimenez</p>
+                <p>+55 11 986223442 - Pedro Alexandre</p>
+                <p>+55 11 978227667 - Pedro Bueno</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 LabRoom. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

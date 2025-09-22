@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Economia Digital do Metaverso | LabRoom</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos específicos para esta página */
+        .economy-hero {
+            background: linear-gradient(135deg, var(--primary-dark), #4B0082);
+        }
+        
+        .economy-card {
+            background: rgba(26, 0, 51, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(138, 43, 226, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .economy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.4);
+        }
+        
+        .token-card {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: rgba(74, 0, 130, 0.3);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+        
+        .token-card:hover {
+            background: rgba(138, 43, 226, 0.3);
+        }
+        
+        .token-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 20px;
+            object-fit: contain;
+            background: white;
+            padding: 5px;
+        }
+        
+        .market-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .stat-card {
+            background: rgba(138, 43, 226, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .nft-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .nft-item {
+            background: rgba(26, 0, 51, 0.5);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s;
+            border: 1px solid rgba(138, 43, 226, 0.3);
+        }
+        
+        .nft-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+        }
+        
+        .nft-image {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        
+        .nft-info {
+            padding: 10px;
+        }
+        
+        .nft-name {
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .nft-price {
+            font-size: 0.8rem;
+            color: var(--secondary);
+            font-weight: 700;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background: var(--primary-light);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background: rgba(74, 0, 130, 0.3);
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .timeline-date {
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            content: '';
+            position: absolute;
+            border-style: solid;
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent rgba(74, 0, 130, 0.3);
+            right: -10px;
+            top: 20px;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::after {
+            content: '';
+            position: absolute;
+            border-style: solid;
+            border-width: 10px 10px 10px 0;
+            border-color: transparent rgba(74, 0, 130, 0.3) transparent transparent;
+            left: -10px;
+            top: 20px;
+        }
+        
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 0;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content::after,
+            .timeline-item:nth-child(even) .timeline-content::after {
+                left: 60px;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent rgba(74, 0, 130, 0.3) transparent transparent;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+    <!-- Header/Navegação -->
+    <header class="header">
+    <div class="logo">
+        <span class="logo-text">LabRoom</span>
+    </div>
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="#NovaFronteira" class="nav-link">Nova Fronteira</a></li>
+            <li><a href="#TokensCriptomoedas" class="nav-link">Tokens e Criptomoedas</a></li>
+            <li><a href="#NFTs" class="nav-link">NFTs</a></li>
+            <li><a href="#PlayEarn" class="nav-link">Play-to-Earn</a></li>
+            <li><a href="#Evolução" class="nav-link">Evolução</a></li>
+            <li><a href="#ComoParticipar" class="nav-link">Como Participar</a></li>
+        </ul>
+    </nav>
+
+    <!-- Botão de Acessibilidade -->
+    <div class="accessibility-tools">
+        <button id="screen-reader-toggle" class="accessibility-btn" aria-label="Ativar leitor de tela">
+            <i class="fas fa-assistive-listening-systems"></i>
+            <span class="tooltip">Leitor de Tela</span>
+        </button>
+        
+        <button id="font-decrease" class="accessibility-btn" aria-label="Diminuir tamanho da fonte">
+            <i class="fas fa-text-height"></i>
+            <span class="tooltip">A-</span>
+        </button>
+
+        <button id="font-increase" class="accessibility-btn" aria-label="Aumentar tamanho da fonte">
+            <i class="fas fa-text-height"></i>
+            <span class="tooltip">A+</span>
+        </button>
+        
+        <button id="high-contrast" class="accessibility-btn" aria-label="Alto contraste">
+            <i class="fas fa-adjust"></i>
+            <span class="tooltip">Contraste</span>
+        </button>
+    </div>
+    
+    <!-- ÚNICO menu toggle -->
+    <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </div>
+</header>
+
+    <!-- Hero Section Economia Digital -->
+<section class="hero economy-hero">
+    <div class="hero-container">
+        <div class="hero-content">
+            <h1 class="hero-title">Economia Digital do <span>Metaverso</span></h1>
+            <p class="hero-subtitle">Explore como NFTs, criptomoedas e ativos virtuais estão revolucionando o valor digital</p>
+        </div>
+        
+        <div class="hero-image">
+            <div class="vr-headset">
+                <img src="Imagens/bitcoin.png.webp" alt="Economia Digital do Metaverso" class="headset-img">
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Seção Introdução -->
+    <section id="NovaFronteira" class="section">
+        <div class="section-header">
+            <h2>A Nova Fronteira Econômica</h2>
+            <p>Como o metaverso está criando novas formas de valor e comércio</p>
+        </div>
+        
+        <div class="economy-card">
+            <p>A economia do metaverso é um ecossistema digital em rápido crescimento que combina elementos de jogos, redes sociais, comércio eletrônico e finanças descentralizadas. Em 2025, estima-se que o valor total dessa economia ultrapasse US$ 100 bilhões, com oportunidades para criadores, investidores e usuários comuns.</p>
+            
+            <div class="market-stats">
+                <div class="stat-card">
+                    <div class="stat-value">R$ 500Bi+</div>
+                    <div class="stat-label">Valor de mercado</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">50M+</div>
+                    <div class="stat-label">Usuários de cripto no metaverso</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">R$ 10Mi+</div>
+                    <div class="stat-label">Maior venda de NFT virtual</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Tokens e Criptomoedas -->
+    <section id="TokensCriptomoedas" class="section" style="background: linear-gradient(135deg, var(--primary), var(--primary-dark));">
+        <div class="section-header">
+            <h2>Tokens e Criptomoedas</h2>
+            <p>As moedas que movimentam o metaverso</p>
+        </div>
+        
+        <div class="economy-card">
+            <p>As economias virtuais do metaverso são alimentadas por diversas criptomoedas e tokens que permitem transações, compra de terrenos virtuais, itens digitais e acesso a experiências exclusivas.</p>
+            
+            <h3 style="margin: 25px 0 15px; color: var(--accent);">Principais Moedas do Metaverso</h3>
+            
+            <div class="token-card">
+                <img src="imagens/mana.png" alt="MANA" class="token-icon">
+                <div>
+                    <h4>MANA (Decentraland)</h4>
+                    <p>Moeda nativa do Decentraland, usada para comprar terrenos LAND e itens virtuais. Capitalização de mercado: R$ 5 bilhões+</p>
+                </div>
+            </div>
+            
+            <div class="token-card">
+                <img src="imagens/sand.webp" alt="SAND" class="token-icon">
+                <div>
+                    <h4>SAND (The Sandbox)</h4>
+                    <p>Token de utilidade do The Sandbox, usado para transações e governança. Capitalização: R$ 8 bilhões+</p>
+                </div>
+            </div>
+            
+            <div class="token-card">
+                <img src="imagens/axs.webp" alt="AXS" class="token-icon">
+                <div>
+                    <h4>AXS (Axie Infinity)</h4>
+                    <p>Token do jogo play-to-earn Axie Infinity, usado para criação e troca de criaturas NFT. Capitalização: R$ 12 bilhões+</p>
+                </div>
+            </div>
+            
+            <div class="token-card">
+                <img src="imagens/robux.webp" alt="Robux" class="token-icon">
+                <div>
+                    <h4>Robux (Roblox)</h4>
+                    <p>Moeda virtual do Roblox, usada para comprar itens e acessórios. Volume anual: R$ 9,2 bilhões+</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção NFTs -->
+    <section id="NFTs" class="section">
+        <div class="section-header">
+            <h2>NFTs no Metaverso</h2>
+            <p>Propriedade digital verdadeira e escassa</p>
+        </div>
+        
+        <div class="economy-card">
+            <p>Os NFTs (Tokens Não-Fungíveis) são a base da propriedade digital no metaverso, representando itens únicos como terrenos virtuais, avatares, roupas, arte e colecionáveis.</p>
+            
+            <h3 style="margin: 25px 0 15px; color: var(--accent);">Exemplos de NFTs no Metaverso</h3>
+            
+            <div class="nft-gallery">
+                <div class="nft-item">
+                    <img src="Imagens/macaco.webp" alt="Avatar NFT" class="nft-image">
+                    <div class="nft-info">
+                        <div class="nft-name">Avatar Bored Ape</div>
+                        <div class="nft-price">R$ 1.200.000</div>
+                    </div>
+                </div>
+                <div class="nft-item">
+                    <img src="imagens/tenis_nft.webp" alt="Tênis Virtual" class="nft-image">
+                    <div class="nft-info">
+                        <div class="nft-name">Tênis RTFKT</div>
+                        <div class="nft-price">R$ 5.000</div>
+                    </div>
+                </div>
+                
+                <div class="nft-item">
+                    <img src="imagens/monalisa.jpg" alt="Arte Digital" class="nft-image">
+                    <div class="nft-info">
+                        <div class="nft-name">Arte Digital Beeple</div>
+                        <div class="nft-price">R$ 150.000</div>
+                    </div>
+                </div>
+            </div>
+            
+            <h4>Como os NFTs criam valor?</h4>
+            <div class="platform-features">
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-fingerprint"></i></div>
+                    <div>
+                        <h5>Verificável e Único</h5>
+                        <p>Cada NFT tem um certificado de autenticidade registrado na blockchain, provando sua originalidade e propriedade.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-exchange-alt"></i></div>
+                    <div>
+                        <h5>Comércio Livre</h5>
+                        <p>NFTs podem ser vendidos em marketplaces abertos, criando mercados secundários para itens digitais.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-robot"></i></div>
+                    <div>
+                        <h5>Interoperabilidade</h5>
+                        <p>Alguns NFTs podem ser usados em múltiplas plataformas, aumentando sua utilidade e valor.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Play-to-Earn -->
+    <section id="PlayEarn" class="section" style="background: linear-gradient(135deg, var(--primary-dark), var(--primary));">
+        <div class="section-header">
+            <h2>Play-to-Earn (Jogue para Ganhar)</h2>
+            <p>Como jogadores estão transformando tempo em renda</p>
+        </div>
+        
+        <div class="economy-card">
+            <p>O modelo play-to-earn revolucionou os games, permitindo que jogadores ganhem renda real através de atividades no metaverso. Plataformas como Axie Infinity, The Sandbox e Decentraland permitem que usuários monetizem seu tempo e habilidades.</p>
+            
+            <div class="market-stats">
+                <div class="stat-card">
+                    <div class="stat-value">R$ 5.000+</div>
+                    <div class="stat-label">Média mensal de jogadores profissionais</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">3M+</div>
+                    <div class="stat-label">Jogadores ativos em modelos P2E</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">R$ 1,5Bi+</div>
+                    <div class="stat-label">Volume de transações P2E em 2025</div>
+                </div>
+            </div>
+            
+            <h3 style="margin: 25px 0 15px; color: var(--accent);">Como começar a ganhar?</h3>
+            
+            <ol style="margin-left: 20px; line-height: 1.8;">
+                <li><strong>Escolha uma plataforma:</strong> Axie Infinity, The Sandbox, Decentraland ou outros jogos P2E</li>
+                <li><strong>Adquira os ativos iniciais:</strong> Alguns jogos requerem investimento inicial em NFTs (como os Axies)</li>
+                <li><strong>Aprenda a jogar:</strong> Domine as mecânicas de geração de valor do jogo</li>
+                <li><strong>Monetize:</strong> Venda itens, recursos ou habilidades no mercado do jogo</li>
+                <li><strong>Reinvista:</strong> Use parte dos ganhos para melhorar seu setup e aumentar seus rendimentos</li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- Seção Linha do Tempo -->
+    <section id="Evolução" class="section">
+        <div class="section-header">
+            <h2>Evolução da Economia Digital</h2>
+            <p>Marcos importantes no desenvolvimento da economia do metaverso</p>
+        </div>
+        
+        <div class="economy-card">
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2003 - 2010</div>
+                        <p>Economias virtuais em jogos como Second Life e World of Warcraft, com moedas e itens negociáveis.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2015</div>
+                        <p>Lançamento do Ethereum, possibilitando contratos inteligentes e tokens programáveis.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2017</div>
+                        <p>Popularização dos NFTs com CryptoKitties e primeiras vendas de terrenos virtuais em Decentraland.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2020</div>
+                        <p>Explosão do modelo play-to-earn com Axie Infinity durante a pandemia.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2021</div>
+                        <p>Venda recorde de NFT "Everydays" de Beeple por US$ 69 milhões na Christie's.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">2022 - Presente</div>
+                        <p>Grandes marcas como Nike, Adidas e Gucci entram no metaverso com produtos e experiências digitais.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Como Participar -->
+    <section id="ComoParticipar" class="section" style="background: linear-gradient(135deg, var(--primary), var(--primary-dark));">
+        <div class="section-header">
+            <h2>Como Participar Dessa Economia</h2>
+            <p>Comece sua jornada na economia digital do metaverso</p>
+        </div>
+        
+        <div class="metaverso-grid">
+            <div class="metaverso-card">
+                <div class="card-icon">
+                    <i class="fas fa-wallet"></i>
+                </div>
+                <h3>Como Investidor</h3>
+                <p>Compre terrenos virtuais, NFTs promissores ou tokens de plataformas em crescimento. Diversifique e pesquise antes de investir.</p>
+            </div>
+            <div class="metaverso-card">
+                <div class="card-icon">
+                    <i class="fas fa-paint-brush"></i>
+                </div>
+                <h3>Como Criador</h3>
+                <p>Desenvolva itens digitais, experiências ou arte para vender no metaverso. Plataformas como Roblox e Decentraland oferecem ferramentas.</p>
+            </div>
+            <div class="metaverso-card">
+                <div class="card-icon">
+                    <i class="fas fa-gamepad"></i>
+                </div>
+                <h3>Como Jogador</h3>
+                <p>Participe de jogos play-to-earn, ganhe recompensas e construa um portfólio de ativos digitais valiosos.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <span class="logo-text">LabRoom</span>
+                <p>Explorando o futuro das experiências digitais</p>
+            </div>
+            <div class="footer-links">
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="#NovaFronteira" class="nav-link">Nova Fronteira</a></li>
+                    <li><a href="#TokensCriptomoedas" class="nav-link">Tokens e Criptomoedas</a></li>
+                    <li><a href="#NFTs" class="nav-link">NFTs</a></li>
+                    <li><a href="#PlayEarn" class="nav-link">Play-to-Earn</a></li>
+                    <li><a href="#Evolução" class="nav-link">Evolução</a></li>
+                    <li><a href="#ComoParticipar" class="nav-link">Como Participar</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contato</h4>
+                <p>+55 11 960330033 - João Vitor A</p>
+                <p>+55 11 980181426 - Leonardo Dalessandro</p>
+                <p>+55 11 992043056 - Leonardo Gimenez</p>
+                <p>+55 11 986223442 - Pedro Alexandre</p>
+                <p>+55 11 978227667 - Pedro Bueno</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 LabRoom. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
