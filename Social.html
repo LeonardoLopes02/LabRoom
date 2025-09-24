@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social no Metaverso | LabRoom</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos específicos para esta página */
+        .social-hero {
+            background: linear-gradient(135deg, var(--primary-dark), #6a3093);
+        }
+        
+        .social-card {
+            background: rgba(26, 0, 51, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(138, 43, 226, 0.5);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .social-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.4);
+        }
+        
+        .platform-card {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: rgba(74, 0, 130, 0.3);
+            border-radius: 10px;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+        
+        .platform-card:hover {
+            background: rgba(138, 43, 226, 0.3);
+        }
+        
+        .platform-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            margin-right: 20px;
+            object-fit: contain;
+            background: white;
+            padding: 5px;
+        }
+        
+        /* EVENTOS ATUALIZADOS */
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .event-card {
+            background: rgba(138, 43, 226, 0.2);
+            border-radius: 15px;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(138, 43, 226, 0.3);
+            transition: all 0.3s;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.3);
+        }
+        
+        .event-date {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--primary-dark);
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-weight: 700;
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+        
+        .event-type {
+            display: inline-block;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        
+        .event-music { background: #fd79a8; color: white; }
+        .event-gaming { background: #00cec9; color: white; }
+        .event-art { background: #fdcb6e; color: var(--primary-dark); }
+        .event-business { background: #74b9ff; color: white; }
+        
+        .event-stats {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .event-stats i {
+            margin-right: 5px;
+        }
+        
+        /* NOVA SEÇÃO: COMUNIDADES E GRUPOS */
+        .communities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .community-card {
+            background: rgba(74, 0, 130, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 1px solid rgba(138, 43, 226, 0.3);
+        }
+        
+        .community-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(138, 43, 226, 0.3);
+            background: rgba(138, 43, 226, 0.2);
+        }
+        
+        .community-icon {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+        }
+        
+        .community-stats {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        
+        .community-stat {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .avatar-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .avatar-item {
+            text-align: center;
+        }
+        
+        .avatar-img {
+            width: 100%;
+            border-radius: 50%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border: 3px solid var(--primary-light);
+            transition: all 0.3s;
+        }
+        
+        .avatar-item:hover .avatar-img {
+            transform: scale(1.1);
+            border-color: var(--secondary);
+        }
+        
+        .avatar-name {
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .platform-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .platform-icon {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .communities-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+
+<header class="header">
+    <div class="logo">
+        <span class="logo-text">LabRoom</span>
+    </div>
+    <nav class="navbar">
+        <ul>
+            <li><a href="index.html" class="nav-link">Home</a></li>
+            <li><a href="#Revolução" class="nav-link">Revolução</a></li>
+            <li><a href="#PrincipaisPlataformas" class="nav-link">Principais Plataformas</a></li>
+            <li><a href="#Expressão" class="nav-link">Expressão</a></li>
+            <li><a href="#EventosSociais" class="nav-link">Eventos Sociais</a></li>
+            <li><a href="#Comunidades" class="nav-link">Comunidades e Grupos</a></li>
+            <li><a href="#ComeçarSocializar" class="nav-link">Começar a Socializar</a></li>
+        </ul>
+    </nav>
+
+    <!-- Botão de Acessibilidade -->
+    <div class="accessibility-tools">
+        <button id="screen-reader-toggle" class="accessibility-btn" aria-label="Ativar leitor de tela">
+            <i class="fas fa-assistive-listening-systems"></i>
+            <span class="tooltip">Leitor de Tela</span>
+        </button>
+        
+        <button id="font-decrease" class="accessibility-btn" aria-label="Diminuir tamanho da fonte">
+            <i class="fas fa-text-height"></i>
+            <span class="tooltip">A-</span>
+        </button>
+
+        <button id="font-increase" class="accessibility-btn" aria-label="Aumentar tamanho da fonte">
+            <i class="fas fa-text-height"></i>
+            <span class="tooltip">A+</span>
+        </button>
+        
+        <button id="high-contrast" class="accessibility-btn" aria-label="Alto contraste">
+            <i class="fas fa-adjust"></i>
+            <span class="tooltip">Contraste</span>
+        </button>
+    </div>
+    
+    <!-- ÚNICO menu toggle -->
+    <div class="menu-toggle">
+        <i class="fas fa-bars"></i>
+    </div>
+</header>
+
+    <!-- Hero Section Social -->
+    <section class="hero social-hero">
+    <div class="hero-container">
+        <div class="hero-content">
+            <h1 class="hero-title">Social no <span>Metaverso</span></h1>
+            <p class="hero-subtitle">Conecte-se, interaja e compartilhe experiências em mundos virtuais</p>
+        </div>
+        
+        <div class="hero-image">
+            <div class="vr-headset">
+                <img src="Imagens/social.png" alt="Social no Metaverso" class="headset-img">
+            </div>
+        </div>
+    </div>
+    </section>
+    <!-- Seção Introdução -->
+    <section id="Revolução" class="section">
+        <div class="section-header">
+            <h2>A Revolução Social Digital</h2>
+            <p>Como o metaverso está transformando a maneira como nos conectamos</p>
+        </div>
+        
+        <div class="social-card">
+            <p>O metaverso está redefinindo o conceito de interação social, oferecendo espaços virtuais onde pessoas podem se encontrar, trabalhar, se divertir e criar memórias juntas, independentemente da distância física. Em 2025, estima-se que 30% das interações sociais entre jovens adultos ocorram em ambientes virtuais.</p>
+            
+            <div class="platform-features" style="margin-top: 30px;">
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-users"></i></div>
+                    <div>
+                        <h3>Presença Compartilhada</h3>
+                        <p>Sinta-se realmente junto com amigos através de avatares expressivos e espaços 3D compartilhados.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-globe-americas"></i></div>
+                    <div>
+                        <h3>Sem Limites Geográficos</h3>
+                        <p>Conecte-se com pessoas do mundo todo sem barreiras de localização.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-magic"></i></div>
+                    <div>
+                        <h3>Expressão Criativa</h3>
+                        <p>Personalize seu avatar e espaços para refletir sua identidade única.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Plataformas Sociais -->
+    <section id="PrincipaisPlataformas" class="section" style="background: linear-gradient(135deg, var(--primary), var(--primary-dark));">
+        <div class="section-header">
+            <h2>Principais Plataformas Sociais</h2>
+            <p>Onde as conexões virtuais estão acontecendo</p>
+        </div>
+        
+        <div class="social-card">
+            <div class="platform-card">
+                <img src="Imagens/horizon.png" alt="Horizon Worlds" class="platform-icon">
+                <div>
+                    <h3>Horizon Worlds (Meta)</h3>
+                    <p>Plataforma social da Meta onde usuários podem criar e explorar mundos virtuais juntos, com suporte completo a avatares e interações em VR.</p>
+                    <p><strong>Destaque:</strong> Eventos ao vivo com artistas famosos e integração com redes sociais tradicionais.</p>
+                </div>
+            </div>
+            
+            <div class="platform-card">
+                <img src="Imagens/vrchat.png" alt="VRChat" class="platform-icon">
+                <div>
+                    <h3>VRChat</h3>
+                    <p>Plataforma aberta focada em interação social através de avatares altamente personalizáveis, com milhares de mundos criados pela comunidade.</p>
+                    <p><strong>Destaque:</strong> Suporte a full-body tracking e criação de avatares 3D customizados.</p>
+                </div>
+            </div>
+            
+            <div class="platform-card">
+                <img src="Imagens/rec room.png" alt="Rec Room" class="platform-icon">
+                <div>
+                    <h3>Rec Room</h3>
+                    <p>Espaço social que combina jogos, criação e interação, popular entre adolescentes e jovens adultos.</p>
+                    <p><strong>Destaque:</strong> Ferramentas fáceis para criar seus próprios jogos e salas sociais.</p>
+                </div>
+            </div>
+            
+            <div class="platform-card">
+                <img src="Imagens/spacevr.png "alt="AltspaceVR" class="platform-icon">
+                <div>
+                    <h3>AltspaceVR</h3>
+                    <p>Plataforma focada em eventos sociais e profissionais, com salas de reunião, shows e conferências.</p>
+                    <p><strong>Destaque:</strong> Programação diária de eventos organizados e ferramentas para networking.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Avatares -->
+    <section id="Expressão" class="section">
+        <div class="section-header">
+            <h2>Expressão através de Avatares</h2>
+            <p>Sua identidade digital no metaverso</p>
+        </div>
+        
+        <div class="social-card">
+            <p>Os avatares são a base da interação social no metaverso, permitindo que você se expresse de maneira única enquanto interage com outros. Eles vão muito além da aparência física, incorporando movimentos, expressões faciais e até mesmo roupas digitais.</p>
+            
+            <div class="avatar-grid">
+                <div class="avatar-item">
+                    <img src="Imagens/nft_casual.jpg" alt="Avatar Casual" class="avatar-img">
+                    <div class="avatar-name">Estilo Casual</div>
+                </div>
+                <div class="avatar-item">
+                    <img src="Imagens/profissional.jpg" alt="Avatar Profissional" class="avatar-img">
+                    <div class="avatar-name">Look Profissional</div>
+                </div>
+                <div class="avatar-item">
+                    <img src="Imagens/nft_fantasia.jpg" alt="Avatar Fantasia" class="avatar-img">
+                    <div class="avatar-name">Fantasia</div>
+                </div>
+                <div class="avatar-item">
+                    <img src="Imagens/nft_abstrata.jpg" alt="Avatar Abstrato" class="avatar-img">
+                    <div class="avatar-name">Arte Abstrata</div>
+                </div>
+                <div class="avatar-item">
+                    <img src="Imagens/celebridade.jpg" alt="Avatar Celebrity" class="avatar-img">
+                    <div class="avatar-name">Celebridade</div>
+                </div>
+                <div class="avatar-item">
+                    <img src="Imagens/robo.jpg" alt="Avatar Robótico" class="avatar-img">
+                    <div class="avatar-name">Robótico</div>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 30px; color: var(--accent);">Como criar seu avatar ideal?</h3>
+            <ol style="margin-left: 20px; line-height: 1.8;">
+                <li><strong>Escolha uma plataforma:</strong> Cada metaverso tem suas próprias ferramentas de criação</li>
+                <li><strong>Defina seu estilo:</strong> Realista, cartoonizado, abstrato ou fantástico</li>
+                <li><strong>Personalize detalhes:</strong> Roupas, acessórios, cores e texturas</li>
+                <li><strong>Adicione expressões:</strong> Configure movimentos faciais e corporais</li>
+                <li><strong>Colecione itens:</strong> Adquira roupas e acessórios especiais em marketplaces digitais</li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- Seção Eventos Sociais ATUALIZADA -->
+    <section id="EventosSociais" class="section" style="background: linear-gradient(135deg, var(--primary-dark), var(--primary));">
+        <div class="section-header">
+            <h2>Eventos Sociais no Metaverso</h2>
+            <p>Experiências compartilhadas que unem pessoas de todo o mundo</p>
+        </div>
+        
+        <div class="social-card">
+            <p>Os eventos no metaverso estão revolucionando o entretenimento, oferecendo experiências imersivas que transcendem as limitações físicas. De shows a conferências, os eventos virtuais estão redefinindo o conceito de socialização.</p>
+            
+            <div class="events-grid">
+                <div class="event-card">
+                    <span class="event-type event-music">🎵 Música</span>
+                    <h3>Festival Eletrônico Virtual</h3>
+                    <p>24h de música eletrônica com DJs internacionais no Horizon Worlds. Palco principal com efeitos visuais impressionantes.</p>
+                    <div class="event-stats">
+                        <span><i class="fas fa-users"></i> 50K+</span>
+                        <span><i class="fas fa-clock"></i> 20h</span>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <span class="event-type event-gaming">🎮 Gaming</span>
+                    <h3>Torneio de eSports VR</h3>
+                    <p>Competição de Beat Saber com prêmios em dinheiro. Aberto para todos os níveis, desde iniciantes até profissionais.</p>
+                    <div class="event-stats">
+                        <span><i class="fas fa-trophy"></i> R$ 10K</span>
+                        <span><i class="fas fa-gamepad"></i> VR</span>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <span class="event-type event-art">🎨 Arte</span>
+                    <h3>Galeria de NFT Imersiva</h3>
+                    <p>Exposição de arte digital em realidade virtual. Conheça artistas emergentes e adquira obras exclusivas.</p>
+                    <div class="event-stats">
+                        <span><i class="fas fa-paint-brush"></i> 50+</span>
+                        <span><i class="fas fa-image"></i> NFTs</span>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <span class="event-type event-business">💼 Negócios</span>
+                    <h3>Feira de Carreiras Tech</h3>
+                    <p>Conheça empresas de tecnologia oferecendo oportunidades remotas e posições específicas para o metaverso.</p>
+                    <div class="event-stats">
+                        <span><i class="fas fa-building"></i> 30+</span>
+                        <span><i class="fas fa-briefcase"></i> Vagas</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="Comunidades" class="section">
+        <div class="section-header">
+            <h2>Comunidades e Grupos</h2>
+            <p>Encontre sua tribuna no metaverso e conecte-se com pessoas que compartilham seus interesses</p>
+        </div>
+        
+        <div class="social-card">
+            <p>As comunidades são o coração do metaverso. Elas oferecem espaços seguros para compartilhar interesses, aprender novas habilidades e construir amizades significativas em ambientes virtuais.</p>
+            
+            <div class="communities-grid">
+                <div class="community-card">
+                    <div class="community-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h3>Gamers Brasil</h3>
+                    <p>Comunidade de jogadores brasileiros que se reúnem para partidas multiplayer e eventos exclusivos.</p>
+                    <div class="community-stats">
+                        <div class="community-stat">
+                            <i class="fas fa-users"></i> 15K
+                        </div>
+                        <div class="community-stat">
+                            <i class="fas fa-calendar"></i> Diário
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="community-card">
+                    <div class="community-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>Artistas Digitais</h3>
+                    <p>Espaço para criadores compartilharem obras, técnicas e colaborarem em projetos de arte virtual.</p>
+                    <div class="community-stats">
+                        <div class="community-stat">
+                            <i class="fas fa-users"></i> 8K
+                        </div>
+                        <div class="community-stat">
+                            <i class="fas fa-calendar"></i> Semanal
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="community-card">
+                    <div class="community-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Desenvolvedores VR</h3>
+                    <p>Comunidade técnica para desenvolvedores aprenderem e compartilharem sobre criação para realidade virtual.</p>
+                    <div class="community-stats">
+                        <div class="community-stat">
+                            <i class="fas fa-users"></i> 12K
+                        </div>
+                        <div class="community-stat">
+                            <i class="fas fa-calendar"></i> Quinzenal
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <h3 style="margin-top: 40px; color: var(--accent);">Como encontrar comunidades?</h3>
+            <div class="platform-features">
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-search"></i></div>
+                    <div>
+                        <h4>Explore Plataformas</h4>
+                        <p>Use os recursos de busca e descoberta das principais plataformas para encontrar grupos do seu interesse.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-calendar-check"></i></div>
+                    <div>
+                        <h4>Participe de Eventos</h4>
+                        <p>Eventos são ótimas oportunidades para conhecer pessoas e descobrir novas comunidades.</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fas fa-plus-circle"></i></div>
+                    <div>
+                        <h4>Crie sua Própria</h4>
+                        <p>Não encontrou o que procura? Crie sua própria comunidade e atraia pessoas com interesses similares.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Comece Agora -->
+    <section id="ComeçarSocializar" class="section" style="background: linear-gradient(135deg, var(--primary), var(--primary-dark));">
+        <div class="section-header">
+            <h2>Como Começar a Socializar no Metaverso</h2>
+            <p>Primeiros passos para suas conexões virtuais</p>
+        </div>
+        
+        <div class="metaverso-grid">
+            <div class="metaverso-card">
+                <div class="card-icon">
+                    <i class="fas fa-vr-cardboard"></i>
+                </div>
+                <h3>Escolha seu Hardware</h3>
+                <p>Desde headsets VR até acesso por computador ou celular - encontre a opção que cabe no seu orçamento.</p>
+            </div>
+            <div class="metaverso-card">
+                <div class="card-icon">
+                    <i class="fas fa-user-astronaut"></i>
+                </div>
+                <h3>Crie seu Avatar</h3>
+                <p>Dedique tempo para criar uma representação digital com a qual você se identifique.</p>
+            </div>
+            <div class="metaverso-card">
+                <div class="card-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>Encontre Sua Comunidade</h3>
+                <p>Busque grupos com interesses similares aos seus para fazer conexões significativas.</p>
+            </div>
+        </div>
+        
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="index.html#vr" class="btn btn-primary">Ver Headsets Recomendados</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <span class="logo-text">LabRoom</span>
+                <p>Explorando o futuro das experiências digitais</p>
+            </div>
+            <div class="footer-links">
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="#Revolução" class="nav-link">Revolução</a></li>
+                    <li><a href="#PrincipaisPlataformas" class="nav-link">Principais Plataformas</a></li>
+                    <li><a href="#Expressão" class="nav-link">Expressão</a></li>
+                    <li><a href="#EventosSociais" class="nav-link">Eventos Sociais</a></li>
+                    <li><a href="#Comunidades" class="nav-link">Comunidades e Grupos</a></li>
+                    <li><a href="#ComeçarSocializar" class="nav-link">Começar a Socializar</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contato</h4>
+                <p>+55 11 960330033 - João Vitor A</p>
+                <p>+55 11 980181426 - Leonardo Dalessandro</p>
+                <p>+55 11 992043056 - Leonardo Gimenez</p>
+                <p>+55 11 986223442 - Pedro Alexandre</p>
+                <p>+55 11 978227667 - Pedro Bueno</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 LabRoom. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
